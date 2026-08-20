@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "extra_classes",
+  "version": "${version}",
+  "name": "Extra Classes",
+  "description": "Adds extra classes",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/extra_classes/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "rings_of_saturn.github.io.extra_classes.client.ExtraClassesDataGenerator"
+    ],
+    "client": [
+      "rings_of_saturn.github.io.extra_classes.client.ExtraClassesClient"
+    ],
+    "main": [
+      "rings_of_saturn.github.io.extra_classes.ExtraClasses"
+    ]
+  },
+  "mixins": [
+    "extra_classes.mixins.json",
+    {
+      "config": "extra_classes.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
