@@ -18,6 +18,9 @@
     ],
     "main": [
       "rings_of_saturn.github.io.extra_classes.ExtraClasses"
+    ],
+    "cardinal-components": [
+      "rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents"
     ]
   },
   "mixins": [
@@ -31,5 +34,10 @@
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
     "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "cardinal-components": [
+      "extra_classes:class"
+    ]
   }
 }

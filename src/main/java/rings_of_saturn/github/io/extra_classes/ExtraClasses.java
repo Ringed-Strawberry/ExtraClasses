@@ -7,6 +7,8 @@ import static rings_of_saturn.github.io.extra_classes.item.ModItems.registerModI
 
 public class ExtraClasses implements ModInitializer {
 
+    public static final String MOD_ID = "extra_classes";
+
     @Override
     public void onInitialize() {
         registerModBlocks();
