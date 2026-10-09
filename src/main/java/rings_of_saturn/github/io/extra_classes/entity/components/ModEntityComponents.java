@@ -7,15 +7,19 @@ import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
 import rings_of_saturn.github.io.extra_classes.entity.components.types.ClassComponent;
+import rings_of_saturn.github.io.extra_classes.entity.components.types.ManaComponentImpl;
 
 import static rings_of_saturn.github.io.extra_classes.ExtraClasses.MOD_ID;
 
 public class ModEntityComponents implements EntityComponentInitializer {
         public static final ComponentKey<ClassComponent> CLASS =
                 ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "class"), ClassComponent.class);
+        public static final ComponentKey<ManaComponentImpl> MANA =
+                ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "mana"), ManaComponentImpl.class);
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(CLASS, ClassComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(MANA, ManaComponentImpl::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

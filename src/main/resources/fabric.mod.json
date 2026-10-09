@@ -37,7 +37,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "extra_classes:class"
+      "extra_classes:class",
+      "extra_classes:mana"
     ]
   }
 }
