@@ -1,8 +1,10 @@
 package rings_of_saturn.github.io.extra_classes.util;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
+import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
 
 import java.util.List;
 import java.util.Objects;
@@ -50,4 +52,10 @@ public class ClassesUtil {
     public static boolean isEndWizard(PlayerEntity player){
         return isClass(player, END_WIZARD_ID);
     }
+
+    public static boolean canUseItem(PlayerEntity player, ItemStack stack) {
+        Identifier required = stack.get(ModItemComponents.REQUIRED_CLASS);
+        return required == null || isClass(player, required);
+    }
+
 }

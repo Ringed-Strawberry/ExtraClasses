@@ -15,7 +15,7 @@ public class ModConstants {
     public static final String DEFAULT_CLASS_VALUE = "minecraft:overworld";
 
     public static final int WIZARD_MAX_MANA = 100;
-    public static final float WIZARD_REGEN_PER_SECOND = 5.0f;
+    public static final float WIZARD_REGEN_PER_SECOND = 1.0f;
     public static final float REGEN_PER_TICK = WIZARD_REGEN_PER_SECOND / 20.0f;
 
     public static final String ROOT_COMMAND = "extraclasses";
@@ -23,6 +23,16 @@ public class ModConstants {
     public static final String MANA_COMMAND = "mana";
     public static final String CHOOSE_COMMAND = "choose";
     public static final String CLEAR_COMMAND = "clear";
+
+    public static final String WAND_ITEM_NAME = "wand";
+
+    public static final String DEBUG_SPELL_NAME = "debug";
+    public static final int DEBUG_SPELL_MANA_COST = 10;
+
+    public static final int CLICKS_TIMEOUT_TICKS = 20;
+    public static final String CLICKS_HINT_SEPARATOR = " > ";
+
+    public static final int WRONG_CLASS_PENALTY_DURATION = 60;
 
 
 }

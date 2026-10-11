@@ -4,6 +4,7 @@
   "package": "rings_of_saturn.github.io.extra_classes.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

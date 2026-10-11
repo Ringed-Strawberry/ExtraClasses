@@ -92,4 +92,9 @@ public class ManaComponentImpl implements ManaComponent, ServerTickingComponent,
         writeView.putFloat("mana", this.mana);
         writeView.putFloat("maxMana", this.maxMana);
     }
+
+    @Override
+    public boolean canSpend(int amount) {
+        return amount >= 0 && this.mana >= amount;
+    }
 }

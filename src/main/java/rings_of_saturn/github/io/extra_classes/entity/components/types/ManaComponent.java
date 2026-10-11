@@ -9,5 +9,6 @@ public interface ManaComponent extends Component {
     void setMana(int amount);
     boolean trySpend(int amount);
     void replenish(int amount);
+    boolean canSpend(int amount);
     void applyClassDefaults(Identifier classId);
 }
