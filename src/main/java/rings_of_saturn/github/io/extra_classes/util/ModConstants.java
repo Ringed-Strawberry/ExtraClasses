@@ -34,5 +34,9 @@ public class ModConstants {
 
     public static final int WRONG_CLASS_PENALTY_DURATION = 60;
 
+    public static Identifier modID(String path){
+        return Identifier.of(MOD_ID, path);
+    }
+
 
 }
