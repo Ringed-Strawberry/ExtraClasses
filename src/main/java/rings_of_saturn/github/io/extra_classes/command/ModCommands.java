@@ -14,14 +14,17 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import ringed_strawberry.github.io.spacelib.commands.util.CommandUtil;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
 import rings_of_saturn.github.io.extra_classes.components.types.SpendableIntComponent;
 import rings_of_saturn.github.io.extra_classes.util.ClassesUtil;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.getString;
+import static ringed_strawberry.github.io.spacelib.commands.util.CommandUtil.opCommand;
 import static rings_of_saturn.github.io.extra_classes.ExtraClasses.MOD_ID;
 import static rings_of_saturn.github.io.extra_classes.util.ModConstants.*;
 
@@ -32,16 +35,7 @@ public class ModCommands {
     private static final SimpleCommandExceptionType ALREADY_HAS_CLASS =
             new SimpleCommandExceptionType(Text.literal("You already have a class"));
 
-    private static final Predicate<ServerCommandSource> ADMIN_ONLY =
-            CommandManager.requirePermissionLevel(CommandManager.GAMEMASTERS_CHECK);
-
-    private static final SuggestionProvider<ServerCommandSource> CLASS_SUGGESTIONS =
-            (context, builder) -> {
-                for (String name : KNOWN_CLASSES) {
-                    builder.suggest(name);
-                }
-                return builder.buildFuture();
-            };
+    private static final SuggestionProvider<ServerCommandSource> CLASS_SUGGESTIONS = CommandUtil.commandSuggestionText(new HashSet<>(KNOWN_CLASSES));
 
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
@@ -60,28 +54,23 @@ public class ModCommands {
                         .then(CommandManager.argument("className", StringArgumentType.word())
                                 .suggests(CLASS_SUGGESTIONS)
                                 .executes(ModCommands::chooseClass)))
-                .then(CommandManager.literal("list")
-                        .requires(ADMIN_ONLY)
+                .then(opCommand("list")
                         .executes(context -> listClasses(context.getSource())))
-                .then(CommandManager.literal("get")
-                        .requires(ADMIN_ONLY)
+                .then(opCommand("get")
                         .then(CommandManager.argument("targets", EntityArgumentType.players())
                                 .executes(ModCommands::getPlayersClass)))
-                .then(CommandManager.literal("set")
-                        .requires(ADMIN_ONLY)
+                .then(opCommand("set")
                         .then(CommandManager.argument("targets", EntityArgumentType.players())
                                 .then(CommandManager.argument("className", StringArgumentType.word())
                                         .suggests(CLASS_SUGGESTIONS)
                                         .executes(ModCommands::setPlayersClass))))
-                .then(CommandManager.literal(CLEAR_COMMAND)
-                        .requires(ADMIN_ONLY)
+                .then(opCommand(CLEAR_COMMAND)
                         .then(CommandManager.argument("targets", EntityArgumentType.players())
                                 .executes(ModCommands::clearPlayersClass)));
     }
 
     private static LiteralArgumentBuilder<ServerCommandSource> manaCommand() {
-        return CommandManager.literal(MANA_COMMAND)
-                .requires(ADMIN_ONLY)
+        return CommandUtil.opCommand(MANA_COMMAND)
                 .then(CommandManager.literal("get")
                         .then(CommandManager.argument("targets", EntityArgumentType.players())
                                 .executes(ModCommands::getMana)))

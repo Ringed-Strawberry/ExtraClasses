@@ -1,6 +1,7 @@
 package rings_of_saturn.github.io.extra_classes.util;
 
 import net.minecraft.util.Identifier;
+import ringed_strawberry.github.io.spacelib.math.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,7 +20,7 @@ public class ModConstants {
 
     public static final int WIZARD_MAX_MANA = 100;
     public static final float WIZARD_REGEN_PER_SECOND = 5.0f;
-    public static final float REGEN_PER_TICK = WIZARD_REGEN_PER_SECOND / 20.0f;
+    public static final float REGEN_PER_TICK =  TimeUtil.secondsToTicks(WIZARD_REGEN_PER_SECOND);
 
     public static final String ROOT_COMMAND = "extraclasses";
     public static final String CLASS_COMMAND = "class";
@@ -33,10 +34,10 @@ public class ModConstants {
     public static final int DEBUG_SPELL_MANA_COST = 10;
 
     public static final String DEBUG_COOLDOWN_SPELL_NAME = "debug_cooldown";
-    public static final int DEBUG_COOLDOWN_SPELL_COOLDOWN = 40;
+    public static final int DEBUG_COOLDOWN_SPELL_COOLDOWN = TimeUtil.secondsToTicks(2);
     public static final int DEBUG_COOLDOWN_SPELL_MANA_COST = 25;
 
-    public static final int CLICKS_TIMEOUT_TICKS = 20;
+    public static final int CLICKS_TIMEOUT_TICKS = TimeUtil.secondsToTicks(1);
     public static final String CLICKS_HINT_SEPARATOR = " > ";
 
     public static final int WRONG_CLASS_PENALTY_DURATION = 60;
