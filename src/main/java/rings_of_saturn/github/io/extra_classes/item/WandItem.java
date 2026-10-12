@@ -13,6 +13,6 @@ public class WandItem extends Item {
 
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        return ActionResult.PASS;
+        return ActionResult.SUCCESS;
     }
 }

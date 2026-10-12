@@ -38,7 +38,8 @@
   "custom": {
     "cardinal-components": [
       "extra_classes:class",
-      "extra_classes:mana"
+      "extra_classes:mana",
+      "extra_classes:cooldowns"
     ]
   }
 }

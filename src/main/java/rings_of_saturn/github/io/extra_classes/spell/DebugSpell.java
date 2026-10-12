@@ -13,6 +13,7 @@ public class DebugSpell extends Spell{
 
     @Override
     public void cast(ServerPlayerEntity caster) {
+        super.cast(caster);
         caster.sendMessage(Text.literal("Fuck you Minecraft"), false);
     }
 }

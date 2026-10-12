@@ -2,7 +2,7 @@ package rings_of_saturn.github.io.extra_classes;
 
 import net.fabricmc.api.ModInitializer;
 import rings_of_saturn.github.io.extra_classes.command.ModCommands;
-import rings_of_saturn.github.io.extra_classes.item.ItemProtector;
+import rings_of_saturn.github.io.extra_classes.item.event.ItemProtector;
 import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
 import rings_of_saturn.github.io.extra_classes.network.ModPayloads;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;

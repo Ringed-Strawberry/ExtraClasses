@@ -11,6 +11,7 @@ import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;
 import rings_of_saturn.github.io.extra_classes.spell.Spell;
 import rings_of_saturn.github.io.extra_classes.util.ClassesUtil;
+import rings_of_saturn.github.io.extra_classes.util.CooldownsUtil;
 
 import java.util.List;
 
@@ -35,6 +36,11 @@ public class ModPayloads {
             List<Identifier> granted = stack.getOrDefault(ModItemComponents.WAND_SPELLS, List.of());
             if (!granted.contains(spell.getId())) {
                 player.sendMessage(Text.literal("No spell exists"), true);
+                return;
+            }
+
+            if(!CooldownsUtil.isCooldownFinished(spell, player)){
+                player.sendMessage(Text.literal("Spell on cooldown!"), true);
                 return;
             }
 

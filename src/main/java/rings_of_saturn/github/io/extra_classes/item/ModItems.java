@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import ringed_strawberry.github.io.spacelib.item.ItemGen;
 import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
+import rings_of_saturn.github.io.extra_classes.util.ModConstants;
 
 import java.util.List;
 
@@ -14,7 +15,9 @@ public class ModItems {
 
     public static final Item WAND = ItemGen.createItem(Identifier.of(MOD_ID, WAND_ITEM_NAME),
             WandItem::new, new Item.Settings().component(ModItemComponents.WAND_SPELLS,
-                            List.of(Identifier.of(MOD_ID, DEBUG_SPELL_NAME)))
+                            List.of(ModConstants.modID(DEBUG_SPELL_NAME),
+                                    ModConstants.modID(DEBUG_COOLDOWN_SPELL_NAME)
+                            ))
                     .component(ModItemComponents.REQUIRED_CLASS, END_WIZARD_ID)
     );
 

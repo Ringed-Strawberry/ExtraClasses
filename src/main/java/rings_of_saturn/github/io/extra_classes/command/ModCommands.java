@@ -15,7 +15,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
-import rings_of_saturn.github.io.extra_classes.entity.components.types.ManaComponent;
+import rings_of_saturn.github.io.extra_classes.components.types.SpendableIntComponent;
 import rings_of_saturn.github.io.extra_classes.util.ClassesUtil;
 
 import java.util.Collection;
@@ -128,8 +128,8 @@ public class ModCommands {
     private static int getMana(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> targets = EntityArgumentType.getPlayers(context, "targets");
         for (ServerPlayerEntity player : targets) {
-            ManaComponent mana = ModEntityComponents.MANA.get(player);
-            sourceFeedback(context, player.getName().getString() + ": " + mana.getMana() + "/" + mana.getMaxMana());
+            SpendableIntComponent mana = ModEntityComponents.MANA.get(player);
+            sourceFeedback(context, player.getName().getString() + ": " + mana.getValue() + "/" + mana.getMaxValue());
         }
         return targets.size();
     }
@@ -138,9 +138,9 @@ public class ModCommands {
         int amount = IntegerArgumentType.getInteger(context, "amount");
         Collection<ServerPlayerEntity> targets = EntityArgumentType.getPlayers(context, "targets");
         for (ServerPlayerEntity player : targets) {
-            ManaComponent mana = ModEntityComponents.MANA.get(player);
-            mana.setMana(amount);
-            sourceFeedback(context, player.getName().getString() + ": " + mana.getMana() + "/" + mana.getMaxMana());
+            SpendableIntComponent mana = ModEntityComponents.MANA.get(player);
+            mana.setValue(amount);
+            sourceFeedback(context, player.getName().getString() + ": " + mana.getValue() + "/" + mana.getMaxValue());
         }
         return targets.size();
     }
@@ -148,9 +148,9 @@ public class ModCommands {
     private static int refillMana(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         Collection<ServerPlayerEntity> targets = EntityArgumentType.getPlayers(context, "targets");
         for (ServerPlayerEntity player : targets) {
-            ManaComponent mana = ModEntityComponents.MANA.get(player);
-            mana.setMana(mana.getMaxMana());
-            sourceFeedback(context, player.getName().getString() + ": " + mana.getMana() + "/" + mana.getMaxMana());
+            SpendableIntComponent mana = ModEntityComponents.MANA.get(player);
+            mana.setValue(mana.getMaxValue());
+            sourceFeedback(context, player.getName().getString() + ": " + mana.getValue() + "/" + mana.getMaxValue());
         }
         return targets.size();
     }

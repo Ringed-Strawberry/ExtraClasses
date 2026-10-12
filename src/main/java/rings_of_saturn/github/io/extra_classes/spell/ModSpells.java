@@ -5,8 +5,7 @@ import net.minecraft.util.Identifier;
 import java.util.*;
 
 import static rings_of_saturn.github.io.extra_classes.ExtraClasses.MOD_ID;
-import static rings_of_saturn.github.io.extra_classes.util.ModConstants.DEBUG_SPELL_MANA_COST;
-import static rings_of_saturn.github.io.extra_classes.util.ModConstants.DEBUG_SPELL_NAME;
+import static rings_of_saturn.github.io.extra_classes.util.ModConstants.*;
 
 public class ModSpells {
 
@@ -15,6 +14,8 @@ public class ModSpells {
     public static void registerModSpells() {
         register(new DebugSpell(Identifier.of(MOD_ID, DEBUG_SPELL_NAME),
                 List.of(Click.RIGHT,Click.LEFT), DEBUG_SPELL_MANA_COST));
+        register(new CooldownDebugSpell(Identifier.of(MOD_ID, DEBUG_COOLDOWN_SPELL_NAME),
+                List.of(Click.RIGHT,Click.RIGHT,Click.LEFT), DEBUG_COOLDOWN_SPELL_MANA_COST, DEBUG_COOLDOWN_SPELL_COOLDOWN));
     }
 
     public static void register(Spell spell) {

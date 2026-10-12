@@ -1,4 +1,4 @@
-package rings_of_saturn.github.io.extra_classes.item;
+package rings_of_saturn.github.io.extra_classes.item.event;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
