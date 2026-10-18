@@ -9,10 +9,8 @@ import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityCompon
 
 import java.util.LinkedHashMap;
 
-import static rings_of_saturn.github.io.extra_classes.util.ModConstants.DEFAULT_COOLDOWNS_VALUE;
-
 public class CooldownComponent implements IntIdentifierMapComponent, AutoSyncedComponent {
-    private LinkedHashMap<Identifier, Integer> value = DEFAULT_COOLDOWNS_VALUE;
+    private LinkedHashMap<Identifier, Integer> value = LinkedHashMap.newLinkedHashMap(0);
     private final Object provider;
 
     public CooldownComponent(Object provider) {

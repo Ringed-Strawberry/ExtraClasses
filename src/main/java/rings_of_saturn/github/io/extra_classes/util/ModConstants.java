@@ -16,7 +16,6 @@ public class ModConstants {
     public static final Identifier EYE_WARLOCK_ID = Identifier.of(MOD_ID, EYE_WARLOCK_NAME);
     public static final List<String> KNOWN_CLASSES = List.of(END_WIZARD_NAME, EYE_WARLOCK_NAME);
     public static final String DEFAULT_CLASS_VALUE = "extra_classes:end_wizard";
-    public static final LinkedHashMap<Identifier, Integer> DEFAULT_COOLDOWNS_VALUE = LinkedHashMap.newLinkedHashMap(0);
 
     public static final int WIZARD_MAX_MANA = 100;
     public static final float WIZARD_REGEN_PER_SECOND = 5.0f;
@@ -34,7 +33,7 @@ public class ModConstants {
     public static final int DEBUG_SPELL_MANA_COST = 10;
 
     public static final String DEBUG_COOLDOWN_SPELL_NAME = "debug_cooldown";
-    public static final int DEBUG_COOLDOWN_SPELL_COOLDOWN = TimeUtil.secondsToTicks(2);
+    public static final int DEBUG_COOLDOWN_SPELL_COOLDOWN = TimeUtil.secondsToTicks(10);
     public static final int DEBUG_COOLDOWN_SPELL_MANA_COST = 25;
 
     public static final int CLICKS_TIMEOUT_TICKS = TimeUtil.secondsToTicks(1);
