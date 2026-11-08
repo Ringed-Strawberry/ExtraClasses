@@ -45,4 +45,13 @@ public class CooldownComponent implements IntIdentifierMapComponent, AutoSyncedC
             writeView.putString("key" + i, id.toString());
         }
     }
+
+    public boolean isOnCooldown(Identifier spellId) {
+        Integer remaining = this.value.get(spellId);
+        if (remaining != null) {
+            return remaining > 0;
+        }
+        return false;
+    }
+
 }

@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
 import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
+import rings_of_saturn.github.io.extra_classes.network.CancelCastPayload;
 import rings_of_saturn.github.io.extra_classes.network.CastSpellPayload;
 import rings_of_saturn.github.io.extra_classes.spell.Click;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;
@@ -59,6 +60,24 @@ public class WandInputsTracker {
             return;
         }
 
+        if (client.player != null && left && !prevLeft
+                && ModEntityComponents.CAST.get(client.player).isCasting()
+                && client.player.isSneaking()) {
+            ClientPlayNetworking.send(new CancelCastPayload());
+            client.player.swingHand(Hand.MAIN_HAND);
+            client.inGameHud.setOverlayMessage(Text.literal("Cast cancelled"), false);
+            reset();
+            prevLeft = left;
+            prevRight = right;
+            return;
+        }
+
+        if (client.player != null && ModEntityComponents.CAST.get(client.player).isCasting()) {
+            prevLeft = left;
+            prevRight = right;
+            return;
+        }
+
         boolean newInput = false;
         if (left && !prevLeft) {
             clicks.add(Click.LEFT);
@@ -91,8 +110,18 @@ public class WandInputsTracker {
         }
 
         Optional<Spell> match = ModSpells.findComplete(available, clicks);
+
+
         if (match.isPresent()) {
             Spell spell = match.get();
+
+            if (ModEntityComponents.COOLDOWNS.get(client.player).isOnCooldown(spell.getId())) {
+                client.inGameHud.setOverlayMessage(
+                        Text.literal(hint() + "  →  On cooldown"), false);
+                reset();
+                return;
+            }
+
             if (!ModEntityComponents.MANA.get(client.player).canSpend(spell.getManaCost())) {
                 client.inGameHud.setOverlayMessage(
                         Text.literal(hint() + "  →  Not enough Mana"), false);

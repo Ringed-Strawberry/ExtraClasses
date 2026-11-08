@@ -6,6 +6,7 @@ import rings_of_saturn.github.io.extra_classes.item.event.ItemProtector;
 import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
 import rings_of_saturn.github.io.extra_classes.network.ModPayloads;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;
+import rings_of_saturn.github.io.the_eye.entity.ModEntities;
 
 import static rings_of_saturn.github.io.extra_classes.block.ModBlocks.registerModBlocks;
 import static rings_of_saturn.github.io.extra_classes.item.ModItems.registerModItems;

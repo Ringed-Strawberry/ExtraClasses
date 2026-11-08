@@ -6,6 +6,7 @@ import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
+import rings_of_saturn.github.io.extra_classes.entity.components.types.CastComponent;
 import rings_of_saturn.github.io.extra_classes.entity.components.types.ClassComponent;
 import rings_of_saturn.github.io.extra_classes.entity.components.types.CooldownComponent;
 import rings_of_saturn.github.io.extra_classes.entity.components.types.ManaComponent;
@@ -19,11 +20,14 @@ public class ModEntityComponents implements EntityComponentInitializer {
                 ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "mana"), ManaComponent.class);
     public static final ComponentKey<CooldownComponent> COOLDOWNS =
             ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "cooldowns"), CooldownComponent.class);;
+    public static final ComponentKey<CastComponent> CAST =
+            ComponentRegistry.getOrCreate(Identifier.of(MOD_ID, "cast"), CastComponent.class);
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(CLASS, ClassComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(MANA, ManaComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(COOLDOWNS, CooldownComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(CAST, CastComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

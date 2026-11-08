@@ -11,8 +11,17 @@ public abstract class Spell {
     private final List<Click> inputs;
     private final int manaCost;
     private final int cooldown;
+    private final int castDuration;
 
     protected Spell(Identifier id, List<Click> inputs, int manaCost, int cooldown) {
+        this.cooldown = cooldown;
+        this.castDuration = 0;
+        this.id = id;
+        this.inputs = List.copyOf(inputs);
+        this.manaCost = manaCost;
+    }
+    protected Spell(Identifier id, List<Click> inputs, int manaCost, int cooldown, int castDuration) {
+        this.castDuration = castDuration;
         this.cooldown = cooldown;
         this.id = id;
         this.inputs = List.copyOf(inputs);
@@ -21,6 +30,7 @@ public abstract class Spell {
 
     protected Spell(Identifier id, List<Click> inputs, int manaCost) {
         this.cooldown = 0;
+        this.castDuration = 0;
         this.id = id;
         this.inputs = List.copyOf(inputs);
         this.manaCost = manaCost;
@@ -45,4 +55,19 @@ public abstract class Spell {
     public int getCooldown() {
         return this.cooldown;
     }
+
+    public int getCastDuration() {
+        return this.castDuration;
+    }
+
+    public void onCastStart(ServerPlayerEntity caster) {
+    }
+
+    public void onCastTick(ServerPlayerEntity caster, int elapsedTicks) {
+    }
+
+    public void onCastEnd(ServerPlayerEntity caster) {
+    }
+
+
 }

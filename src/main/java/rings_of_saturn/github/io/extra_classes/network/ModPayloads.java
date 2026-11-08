@@ -7,6 +7,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
+import rings_of_saturn.github.io.extra_classes.entity.components.types.CastComponent;
 import rings_of_saturn.github.io.extra_classes.item.component.ModItemComponents;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;
 import rings_of_saturn.github.io.extra_classes.spell.Spell;
@@ -49,7 +50,27 @@ public class ModPayloads {
                 return;
             }
 
-            spell.cast(player);
+            if (spell.getCastDuration() > 0) {
+                CastComponent cast = ModEntityComponents.CAST.get(player);
+                if (cast.isCasting()) {
+                    player.sendMessage(Text.literal("Already casting"), true);
+                    return;
+                }
+                cast.start(spell.getId(), spell.getCastDuration());
+                spell.onCastStart(player);
+            } else {
+                spell.cast(player);
+            }
         });
+
+        PayloadTypeRegistry.playC2S().register(CancelCastPayload.ID, CancelCastPayload.CODEC);
+
+        ServerPlayNetworking.registerGlobalReceiver(CancelCastPayload.ID, (payload, context) -> {
+            var player = context.player();
+            if (player.isSneaking()) {
+                ModEntityComponents.CAST.get(player).cancel();
+            }
+        });
+
     }
 }
