@@ -39,7 +39,9 @@
     "cardinal-components": [
       "extra_classes:class",
       "extra_classes:mana",
-      "extra_classes:cooldowns"
+      "extra_classes:cooldowns",
+      "extra_classes:should_phase",
+      "extra_classes:cast"
     ]
   }
 }

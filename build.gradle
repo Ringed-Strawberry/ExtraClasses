@@ -28,11 +28,17 @@ fabricApi {
 }
 
 repositories {
+    mavenCentral()
+    mavenLocal()
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+
     maven {
         name = "Ladysnake Libs"
         url = 'https://maven.ladysnake.org/releases'
     }
-    mavenCentral()
     maven {
         name = 'Jitpack'
         url = 'https://jitpack.io'
@@ -46,6 +52,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${project.minecraft_version}:${project.geckolib_version}"
     include modImplementation("com.github.Ringed-Strawberry:SpaceLib:${project.spacelib_version}")
     include modImplementation("com.github.rings-of-saturn:the-eye:${project.the_eye_version}")
 
