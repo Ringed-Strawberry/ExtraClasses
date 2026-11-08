@@ -7,11 +7,12 @@ import net.minecraft.storage.WriteView;
 import net.minecraft.util.Identifier;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
+import rings_of_saturn.github.io.extra_classes.components.types.SpellCastingComponent;
 import rings_of_saturn.github.io.extra_classes.entity.components.ModEntityComponents;
 import rings_of_saturn.github.io.extra_classes.spell.ModSpells;
 import rings_of_saturn.github.io.extra_classes.spell.Spell;
 
-public class CastComponent implements /* idk what components to add :( */ ServerTickingComponent, AutoSyncedComponent {
+public class CastComponent implements ServerTickingComponent, AutoSyncedComponent, SpellCastingComponent {
     private Identifier activeSpell = null;
     private int remainingTicks = 0;
     private int elapsedTicks = 0;
@@ -68,7 +69,6 @@ public class CastComponent implements /* idk what components to add :( */ Server
         return this.elapsedTicks;
     }
 
-    @Override
     public boolean isCasting() {
         return this.activeSpell != null;
     }
